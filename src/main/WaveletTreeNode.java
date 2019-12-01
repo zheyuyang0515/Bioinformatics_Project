@@ -1,15 +1,15 @@
 package main;
 
 public class WaveletTreeNode {
-	int val;
+	String val;
 	WaveletTreeNode left;
 	WaveletTreeNode right;
-	public WaveletTreeNode(int val) {
+	public WaveletTreeNode(String val) {
 		this.val = val;
 		left = right = null;
 	}
 	public WaveletTreeNode() {
-		this.val = -1;
+		this.val = "";
 		left = right = null;
 	}
 }

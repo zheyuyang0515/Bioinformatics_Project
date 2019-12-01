@@ -22,6 +22,9 @@ public class WaveletTree {
 		int rSize = 0;
 		for(int i = 0; i < len; i++) {
 			String s = codeTable.get(L.charAt(i));
+			if(s.length() <= level) {
+				return;
+			}
 			char ch = s.charAt(level);
 			if(ch == '1') {
 				root.val += '1';
@@ -32,14 +35,17 @@ public class WaveletTree {
 				lp[lSize] = L.charAt(i);
 				lSize++;
 			}
-		}
+		}	
 		if(root.left != null) {
+			System.out.println("left");
 			insertWT(codeTable, root.left, String.valueOf(lp), lSize, level + 1);
-		} else if(root.right != null) {
+		} 
+		if(root.right != null) {
+			System.out.println("right");
 			insertWT(codeTable, root.right, String.valueOf(rp), rSize, level + 1);
 		}
-		
 	}
+	
 	public WaveletTreeNode constructWT(Map<Character, String> codeTable) {
 		WaveletTreeNode root = new WaveletTreeNode();
 		List<Element> list = new ArrayList<>();
@@ -57,7 +63,7 @@ public class WaveletTree {
 			int len = element.code.length();
 			WaveletTreeNode node = root;
 			for(int j = 0; j < len; j++) {
-				if(element.code.charAt(j) == 0) {
+				if(element.code.charAt(j) == '0') {
 					if(node.left == null) {
 						node.left = new WaveletTreeNode();
 					}
