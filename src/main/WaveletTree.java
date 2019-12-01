@@ -37,11 +37,9 @@ public class WaveletTree {
 			}
 		}	
 		if(root.left != null) {
-			System.out.println("left");
 			insertWT(codeTable, root.left, String.valueOf(lp), lSize, level + 1);
 		} 
 		if(root.right != null) {
-			System.out.println("right");
 			insertWT(codeTable, root.right, String.valueOf(rp), rSize, level + 1);
 		}
 	}
