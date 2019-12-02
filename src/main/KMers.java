@@ -1,11 +1,9 @@
 package main;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class KMers {
-	public Map<String, Integer> fetchKmers(String s, int len) {
-		Map<String, Integer> map = new HashMap<>();
+	public static Map<String, Integer> fetchKmers(String s, int len, Map<String, Integer> map) {
 		if(s.length() == 0) {
 			return map;
 		}
