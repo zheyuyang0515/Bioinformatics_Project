@@ -1,3 +1,4 @@
+package main;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,11 +35,11 @@ public class Coding {
 	}
 
 	
-//第一位：是否是同一个kmer
-//第二位：是否是同一个小波树的节点
+//第一位：是否是同�?个kmer
+//第二位：是否是同�?个小波树的节�?
 //第三位：是哪种coding方法
-//第四位：是否是属于前一个byte
-//后四位: 存数据
+//第四位：是否是属于前�?个byte
+//后四�?: 存数�?
 	
 //
 	public List<Byte> gammaCoding(List<String> runlength, String s, boolean isRoot) {
@@ -84,7 +85,7 @@ public class Coding {
 				
 			}else {
 				//间接编码,runlength + gamma
-				//比如有8个0，那么对8进行 gamma编码，第5位记录是对0还是1进行编码，所以剩下3位存数据
+				//比如�?8�?0，那么对8进行 gamma编码，第5位记录是�?0还是1进行编码，所以剩�?3位存数据
 				String gamma =  gammaOperation(tInteger);
 				//System.out.println(gamma);
 				int undircLen = (int) Math.ceil(gamma.length() / 3.0);
@@ -174,7 +175,7 @@ public class Coding {
 		return code.toString();	
 	}
 	
-//将00111...string转成byte
+//�?00111...string转成byte
 	public byte stringToByte(String str) {
 	 int res = 0;
 	 if (null == str) {
