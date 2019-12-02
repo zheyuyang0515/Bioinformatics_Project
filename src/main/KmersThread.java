@@ -5,20 +5,18 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.LineNumberReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
-public class CompressorThread implements Runnable{
+public class KmersThread implements Runnable {
 	private Thread t;
 	int totalLineNum;
 	int totalBlockNum;
 	String fileName;
-	public CompressorThread(int totalLineNum, String fileName, int totalBlockNum) {
+	int kmerLen;
+	public KmersThread(int totalLineNum, String fileName, int totalBlockNum, int kmerLen) {
 		this.totalLineNum = totalLineNum;
 		this.fileName = fileName;
 		this.totalBlockNum = totalBlockNum;
+		this.kmerLen = kmerLen;
 	}
 	public void start () {
 		if (t == null) {
@@ -38,36 +36,37 @@ public class CompressorThread implements Runnable{
 			e.printStackTrace();
 		}
 		LineNumberReader reader = new LineNumberReader(fileReader);
+		//List<String> result = new ArrayList<>();
 		int currentLine = 1;
 		while(true) {
-			int block = KMerCompressor.setKmersLineNum();
+			int block = KMerCompressor.setLineNum();
 			if(block >= totalBlockNum) {
+				//System.out.println(result.size());
 				break;
 			}
-			int line = block * 2 + 2;
-			String kmer = "";
+			int line = block * 4 + 2;
+			String ctx = "";
 			while(currentLine <= line) {
 				try {
-					kmer = reader.readLine();
+					ctx = reader.readLine();
 					currentLine++;
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
-			Bwt bwt = BwtConverter.bwtEncode(kmer);
-			Huffman huffman = new Huffman();
-			Map<Character, String> codeTable = new HashMap<>();
-			try {
-				codeTable = huffman.huffman(bwt.L);
-			} catch (IOException e) {
+			KMers.fetchKmers(ctx, kmerLen, KMerCompressor.kmersMap);
+			/*for(String key : map.keySet()) {
+				System.out.println(key + ": " + map.get(key));
+			}*/
+			//System.out.println(result.size());
+			//System.out.println(ctx);
+			/*try {
+				Thread.sleep(1);
+			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
-			WaveletTree waveletTree = new WaveletTree();
-			WaveletTreeNode root = waveletTree.constructWT(codeTable);
-			waveletTree.insertWT(codeTable, root, bwt.L, bwt.L.length(), 0);
-			System.out.println(root.val);
+			}*/
 		}
 	}
 

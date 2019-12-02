@@ -1,3 +1,10 @@
+package main;
+import java.io.IOException;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.PriorityQueue;
+
 public class Huffman {
 	 public class TreeNode {
 		 public char c;
@@ -71,7 +78,7 @@ public class Huffman {
 
 	
 	public static void main(String[] args) throws IOException {
-		test t = new Huffman();
+		Huffman t = new Huffman();
 		
 		Map<Character, String> map = t.huffman("we will we will r u");
 		for(Character key : map.keySet()) {

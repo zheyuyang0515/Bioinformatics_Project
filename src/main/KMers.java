@@ -1,5 +1,8 @@
 package main;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.List;
 import java.util.Map;
 
 public class KMers {
@@ -22,4 +25,18 @@ public class KMers {
 		}
 		return map;
 	}
+	//字节流写入文件
+    public static void writeToFile(String output, List<Byte> data) {
+    	byte[] array = new byte[data.size()];
+    	for(int i = 0; i < array.length; i++) {
+    		array[i] = data.get(i);
+    	}
+        try {
+            FileOutputStream outputStream  =new FileOutputStream(new File(output));
+            outputStream.write(array);
+            outputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

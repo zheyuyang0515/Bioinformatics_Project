@@ -1,17 +1,14 @@
 package main;
 
-import static org.junit.jupiter.api.Assumptions.assumingThat;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class BwtConverter {
-	public Bwt bwtEncode(String kmer) {
+	public static Bwt bwtEncode(String kmer) {
 		StringBuilder sb = new StringBuilder(kmer + "$");
 		String[] arr = new String[sb.length()];
 		for(int i = 0; i < arr.length; i++) {
